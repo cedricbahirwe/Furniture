@@ -13,7 +13,7 @@ struct TabBarView: View {
     ]
     @State private var selectedTab = "Trending"
     
-    @Namespace var animation: Namespace.ID
+    @Namespace var animation
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {

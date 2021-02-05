@@ -11,6 +11,7 @@
 		82510FCC25CD6C9100C82BC8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82510FCB25CD6C9100C82BC8 /* Colors.swift */; };
 		82510FE325CD793C00C82BC8 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82510FE225CD793C00C82BC8 /* TabBarView.swift */; };
 		82510FEE25CD81A700C82BC8 /* TopHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82510FED25CD81A700C82BC8 /* TopHeaderView.swift */; };
+		82510FFF25CD8B6B00C82BC8 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82510FFE25CD8B6B00C82BC8 /* ProductDetailView.swift */; };
 		82C00A4825CD63DC00078D95 /* FurnitureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C00A4725CD63DC00078D95 /* FurnitureApp.swift */; };
 		82C00A4A25CD63DC00078D95 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C00A4925CD63DC00078D95 /* ContentView.swift */; };
 		82C00A4C25CD63DD00078D95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82C00A4B25CD63DD00078D95 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		82510FCB25CD6C9100C82BC8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		82510FE225CD793C00C82BC8 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		82510FED25CD81A700C82BC8 /* TopHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderView.swift; sourceTree = "<group>"; };
+		82510FFE25CD8B6B00C82BC8 /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
 		82C00A4425CD63DC00078D95 /* Furniture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Furniture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C00A4725CD63DC00078D95 /* FurnitureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FurnitureApp.swift; sourceTree = "<group>"; };
 		82C00A4925CD63DC00078D95 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				82510FC525CD6A8F00C82BC8 /* ItemView.swift */,
 				82510FE225CD793C00C82BC8 /* TabBarView.swift */,
 				82510FED25CD81A700C82BC8 /* TopHeaderView.swift */,
+				82510FFE25CD8B6B00C82BC8 /* ProductDetailView.swift */,
 				82C00A4B25CD63DD00078D95 /* Assets.xcassets */,
 				82510FCB25CD6C9100C82BC8 /* Colors.swift */,
 				82C00A5025CD63DD00078D95 /* Info.plist */,
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82C00A4A25CD63DC00078D95 /* ContentView.swift in Sources */,
+				82510FFF25CD8B6B00C82BC8 /* ProductDetailView.swift in Sources */,
 				82510FCC25CD6C9100C82BC8 /* Colors.swift in Sources */,
 				82510FC625CD6A8F00C82BC8 /* ItemView.swift in Sources */,
 				82510FE325CD793C00C82BC8 /* TabBarView.swift in Sources */,

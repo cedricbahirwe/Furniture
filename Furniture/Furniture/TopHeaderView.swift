@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TopHeaderView: View {
-    @Namespace private var animation
     @Environment(\.colorScheme) var colorScheme
     var body: some View {
         VStack {
@@ -45,7 +44,7 @@ struct TopHeaderView: View {
                 })
             }
             .padding(.horizontal)
-            TabBarView(animation: _animation)
+            TabBarView()
             //                .padding()
             //                .background(Color.red)
             

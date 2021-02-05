@@ -22,9 +22,12 @@ struct Item: Identifiable {
             String(format: "%.1f", rate)
         }
     }
+    static let example = Item(image: "chair1", name: "Classic Chair", price: 40, lastPrice: 45, rate: 4.7)
 }
 struct ItemView: View {
     @Environment(\.colorScheme) var colorScheme
+    var animation: Namespace.ID
+
     let item : Item
     var body: some View {
         VStack {
@@ -32,6 +35,10 @@ struct ItemView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding()
+                .hidden()
+//                .matchedGeometryEffect(id: "chair", in: animation)
+//                .frame(width: 200, height: 300)
+
             VStack(alignment: .leading) {
                 Text(item.name)
                 HStack {
@@ -53,8 +60,19 @@ struct ItemView: View {
                     }
                 }
             }
+            .matchedGeometryEffect(id: "info\(item.id)", in: animation)
+//            .frame(width: 300, height: 60)
+
         }
 //        .padding(.top)
+        .background(
+            Image(item.image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .padding()
+                .matchedGeometryEffect(id: "chair\(item.id)", in: animation)
+            
+        )
         .overlay(
             Image(systemName: "heart.fill")
                 .foregroundColor(item.price%2 == 0 ? Color("mainBlue") : Color.black.opacity(0.1))
@@ -68,9 +86,9 @@ struct ItemView: View {
     }
 }
 
-struct ItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        ItemView(item: Item(image: "chair1", name: "Classic Chair", price: 40, lastPrice: 45, rate: 4.7))
-            .padding()
-    }
-}
+//struct ItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ItemView(animation: "Namespace.ID", item: Item.example)
+//            .padding()
+//    }
+//}

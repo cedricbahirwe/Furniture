@@ -10,6 +10,14 @@ import SwiftUI
 let deigner = "https://dribbble.com/mohamedsalahfathy"
 
 struct ContentView: View {
+    
+    @State private var selectedColor = Color("Color-1")
+    
+    @State private var colors: [Color] = [String](repeating: "", count: 5).enumerated().map({ return Color("Color-\($0.offset+1)")  })
+    @Environment(\.colorScheme) var colorScheme
+
+    
+    
     let chairs: [Item] = [
         Item(image: "chair1", name: "Classic Chair", price: 40, lastPrice: 55, rate: 4.7),
         Item(image: "chair2", name: "High Chair", price: 35, lastPrice: 45, rate: 4.3),
@@ -19,17 +27,33 @@ struct ContentView: View {
         Item(image: "chair6", name: "Luxury Chair", price: 65, lastPrice: 80, rate: 4.7),
     ]
     
+    @State private var goToDetails = false
+    @State private var item = Item.example
+    @Namespace private var animation
+
+    
     var body: some View {
         VStack {
-            TopHeaderView()
-            ScrollView(showsIndicators: false) {
-                VStack {
-                    GridStack(rows: 3, columns: 2) { row, column in
-                        ItemView(item: chairs[indexFor(row, column)])
+            if !goToDetails {
+                TopHeaderView()
+                ScrollView(showsIndicators: false) {
+                    VStack {
+                        GridStack(rows: 3, columns: 2) { row, column in
+                            ItemView(animation: animation, item: chairs[indexFor(row, column)])
+                                .onTapGesture {
+                                    withAnimation(.spring()) {
+                                        item = chairs[indexFor(row, column)]
+                                        goToDetails.toggle()
+                                    }
+                                }
+                        }
                     }
+                    .padding()
                 }
-                .padding()
+            } else {
+                ProductDetailView(item: item, animation: animation, isPresented: $goToDetails)
             }
+            
         }
         .applyBackground()
     }
@@ -42,7 +66,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environment(\.colorScheme, .dark)
+//            .environment(\.colorScheme, .dark)
     }
 }
 
