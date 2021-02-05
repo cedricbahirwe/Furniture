@@ -11,13 +11,6 @@ let deigner = "https://dribbble.com/mohamedsalahfathy"
 
 struct ContentView: View {
     
-    @State private var selectedColor = Color("Color-1")
-    
-    @State private var colors: [Color] = [String](repeating: "", count: 5).enumerated().map({ return Color("Color-\($0.offset+1)")  })
-    @Environment(\.colorScheme) var colorScheme
-
-    
-    
     let chairs: [Item] = [
         Item(image: "chair1", name: "Classic Chair", price: 40, lastPrice: 55, rate: 4.7),
         Item(image: "chair2", name: "High Chair", price: 35, lastPrice: 45, rate: 4.3),
@@ -28,7 +21,7 @@ struct ContentView: View {
     ]
     
     @State private var goToDetails = false
-    @State private var item = Item.example
+    @State private var selecteditem = Item.example
     @Namespace private var animation
 
     
@@ -41,8 +34,8 @@ struct ContentView: View {
                         GridStack(rows: 3, columns: 2) { row, column in
                             ItemView(animation: animation, item: chairs[indexFor(row, column)])
                                 .onTapGesture {
-                                    withAnimation(.spring()) {
-                                        item = chairs[indexFor(row, column)]
+                                    withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                                        selecteditem = chairs[indexFor(row, column)]
                                         goToDetails.toggle()
                                     }
                                 }
@@ -51,11 +44,12 @@ struct ContentView: View {
                     .padding()
                 }
             } else {
-                ProductDetailView(item: item, animation: animation, isPresented: $goToDetails)
+                ProductDetailView(item: selecteditem, animation: animation, isPresented: $goToDetails)
             }
             
         }
-        .applyBackground()
+        .applyBackground(!goToDetails)
+
     }
     
     private func indexFor(_ row: Int, _ column: Int) -> Int {
@@ -98,9 +92,11 @@ struct GridStack<Content: View>: View {
 
 
 extension View {
-    func applyBackground() -> some View {
+    func applyBackground(_ apply: Bool = true) -> some View {
         return ZStack {
-            Color("mainBackground").edgesIgnoringSafeArea(.all)
+            if apply {
+                Color("mainBackground").edgesIgnoringSafeArea(.all)
+            }
             self
         }
     }

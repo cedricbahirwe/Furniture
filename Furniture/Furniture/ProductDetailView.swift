@@ -15,7 +15,6 @@ struct ProductDetailView: View {
     
     @State private var colors: [Color] = [String](repeating: "", count: 5).enumerated().map({ return Color("Color-\($0.offset+1)")  })
     
-//    @Environment(\.presentationMode) var presentationMode
     @Binding var isPresented: Bool
     var body: some View {
         VStack {
@@ -26,8 +25,7 @@ struct ProductDetailView: View {
                     .frame(width: 15, height: 25)
                     .foregroundColor(Color(.label))
                     .onTapGesture {
-                        withAnimation(.spring()) {
-//                            presentationMode.wrappedValue.dismiss()
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
                             isPresented.toggle()
                         }
                     }
@@ -42,24 +40,11 @@ struct ProductDetailView: View {
                     .foregroundColor(Color(.label))
             }
             .padding()
+//            Rectangle()
             Image(item.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-//                .matchedGeometryEffect(id: "chair", in: animation)
-//                .frame(width: UIScreen.main.bounds.size.width*0.6)
-                .frame(width: 300, height: 250)
-                .hidden()
-                .background(
-                    
-                    Image(item.image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .matchedGeometryEffect(id: "chair\(item.id)", in: animation)
-//                        .frame(width: UIScreen.main.bounds.size.width*0.6)
-                        .frame(width: 300, height: 250)
-
-                )
-            
+                .matchedGeometryEffect(id: "chair\(item.id)", in: animation)
             ZStack(alignment: .top) {
                 Color.mainBackground
                     .cornerRadius(30)
@@ -101,7 +86,6 @@ struct ProductDetailView: View {
                     }
                     .padding()
                     .matchedGeometryEffect(id: "info\(item.id)", in: animation)
-                    .frame(width: 300, height: 100)
                     .background(Color(.systemBackground))
                     .cornerRadius(25)
                     .shadow(color: .lightShadow, radius: 8, x: -4, y: 4)
@@ -159,6 +143,8 @@ struct ProductDetailView: View {
                             .cornerRadius(8)
                             .shadow(color: .lightShadow, radius: 8, x: -4, y: 4)
                             .shadow(color: .darkShadow, radius: 8, x: 4, y: 4)
+                            .matchedGeometryEffect(id: "favorite\(item.id)", in: animation)
+
 
                         Button(action: {}, label: {
                             Text("ADD TO MY CART")
@@ -181,12 +167,12 @@ struct ProductDetailView: View {
     
 }
 
-//struct ProductDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProductDetailView(item: Item.example, isPresented: .constant(true))
-//        //            .environment(\.colorScheme, .dark)
-//    }
-//}
+struct ProductDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProductDetailView(item: Item.example, animation: Namespace.init().wrappedValue, isPresented: .constant(true))
+        //            .environment(\.colorScheme, .dark)
+    }
+}
 
 extension View {
     func applyRedaction() -> some View {

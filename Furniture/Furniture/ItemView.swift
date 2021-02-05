@@ -35,9 +35,7 @@ struct ItemView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding()
-                .hidden()
-//                .matchedGeometryEffect(id: "chair", in: animation)
-//                .frame(width: 200, height: 300)
+                .matchedGeometryEffect(id: "chair\(item.id)", in: animation)
 
             VStack(alignment: .leading) {
                 Text(item.name)
@@ -61,22 +59,17 @@ struct ItemView: View {
                 }
             }
             .matchedGeometryEffect(id: "info\(item.id)", in: animation)
-//            .frame(width: 300, height: 60)
 
         }
-//        .padding(.top)
-        .background(
-            Image(item.image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding()
-                .matchedGeometryEffect(id: "chair\(item.id)", in: animation)
-            
-        )
+        .padding(.top)
         .overlay(
             Image(systemName: "heart.fill")
                 .foregroundColor(item.price%2 == 0 ? Color("mainBlue") : Color.black.opacity(0.1))
-                .colorScheme(.dark), alignment: .topTrailing
+                .colorScheme(.dark)
+                .matchedGeometryEffect(id: "favorite\(item.id)", in: animation)
+
+            , alignment: .topTrailing
+            
         )
         .padding()
         .background(Color.white.opacity(colorScheme == .light ? 1.0 : 0.03))
@@ -86,9 +79,9 @@ struct ItemView: View {
     }
 }
 
-//struct ItemView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ItemView(animation: "Namespace.ID", item: Item.example)
-//            .padding()
-//    }
-//}
+struct ItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        ItemView(animation: Namespace.init().wrappedValue, item: Item.example)
+            .padding()
+    }
+}
