@@ -53,13 +53,11 @@ struct TopHeaderView: View {
         .background(
             ZStack {
                 if colorScheme == .light {
-                    Color.white.edgesIgnoringSafeArea(.top)
+                    Color.white.ignoresSafeArea(.all, edges: .top)
                         .shadow(radius: 0.5)
                 } else {
-                    Color.mainBackground.edgesIgnoringSafeArea(.top)
+                    Color.mainBackground.ignoresSafeArea(.all, edges: .top)
                         .shadow(color: .darkShadow, radius: 8, x: -8, y: -8)
-
-                    
                 }
             }
         )

@@ -28,21 +28,28 @@ struct ContentView: View {
     var body: some View {
         VStack {
             if !goToDetails {
-                TopHeaderView()
-                ScrollView(showsIndicators: false) {
+                ZStack(alignment: .bottom) {
                     VStack {
-                        GridStack(rows: 3, columns: 2) { row, column in
-                            ItemView(animation: animation, item: chairs[indexFor(row, column)])
-                                .onTapGesture {
-                                    withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
-                                        selecteditem = chairs[indexFor(row, column)]
-                                        goToDetails.toggle()
+                    TopHeaderView()
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            GridStack(rows: 3, columns: 2) { row, column in
+                                ItemView(animation: animation, item: chairs[indexFor(row, column)])
+                                    .onTapGesture {
+                                        withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                                            selecteditem = chairs[indexFor(row, column)]
+                                            goToDetails.toggle()
+                                        }
                                     }
-                                }
+                            }
                         }
+                        .padding()
                     }
-                    .padding()
+                    }
+                    BottomTabBarView()
                 }
+                .ignoresSafeArea(.keyboard)
+
             } else {
                 ProductDetailView(item: selecteditem, animation: animation, isPresented: $goToDetails)
             }
@@ -95,7 +102,7 @@ extension View {
     func applyBackground(_ apply: Bool = true) -> some View {
         return ZStack {
             if apply {
-                Color("mainBackground").edgesIgnoringSafeArea(.all)
+                Color("mainBackground").ignoresSafeArea(.all, edges: .all)
             }
             self
         }

@@ -11,7 +11,7 @@ struct ProductDetailView: View {
     let item: Item
     var animation: Namespace.ID
 
-    @State private var selectedColor = Color("Color-1")
+    @State private var selectedColor = Color(.systemBackground)
     
     @State private var colors: [Color] = [String](repeating: "", count: 5).enumerated().map({ return Color("Color-\($0.offset+1)")  })
     
@@ -40,7 +40,7 @@ struct ProductDetailView: View {
                     .foregroundColor(Color(.label))
             }
             .padding()
-//            Rectangle()
+
             Image(item.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -48,8 +48,7 @@ struct ProductDetailView: View {
             ZStack(alignment: .top) {
                 Color.mainBackground
                     .cornerRadius(30)
-                    .edgesIgnoringSafeArea(.bottom)
-                
+                ignoresSafeArea(.all, edges: .bottom)
                 VStack(alignment: .leading, spacing: 20) {
                     VStack(alignment: .leading) {
                         HStack {
@@ -111,12 +110,12 @@ struct ProductDetailView: View {
                                                     .foregroundColor(.white)
                                                     .font(.system(size: 14, weight: .heavy))
                                                     .padding(10)
-                                                    .onTapGesture {
-                                                        selectedColor =  color
-                                                    }
                                             }
                                         }
                                     )
+                                    .onTapGesture {
+                                        selectedColor =  color
+                                    }
                             }
                         }
                     }
@@ -162,6 +161,7 @@ struct ProductDetailView: View {
                 .padding()
             }
         }
+        .background(selectedColor.ignoresSafeArea())
         
     }
     
