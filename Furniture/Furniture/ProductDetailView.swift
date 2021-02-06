@@ -48,7 +48,7 @@ struct ProductDetailView: View {
             ZStack(alignment: .top) {
                 Color.mainBackground
                     .cornerRadius(30)
-                ignoresSafeArea(.all, edges: .bottom)
+                    .ignoresSafeArea(.all, edges: .bottom)
                 VStack(alignment: .leading, spacing: 20) {
                     VStack(alignment: .leading) {
                         HStack {

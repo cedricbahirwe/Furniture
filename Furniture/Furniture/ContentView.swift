@@ -29,7 +29,7 @@ struct ContentView: View {
         VStack {
             if !goToDetails {
                 ZStack(alignment: .bottom) {
-                    VStack {
+                    VStack(spacing: 0) {
                     TopHeaderView()
                     ScrollView(showsIndicators: false) {
                         VStack {
